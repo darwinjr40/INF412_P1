@@ -19,12 +19,14 @@
       <table class="table table-striped" id="inquiries" border="5" >
         <thead>
           <tr>
-            <th scope="col" width="5%">Id</th>
+            <th scope="col" width="1%">Id</th>
             <th scope="col" width= "15%">Doctor</th>
             <th scope="col" width= "15%">Paciente</th>
             <th scope="col" width= "15%">Especialidad</th>
             <th scope="col" width= "15%">fecha</th>
+            <th scope="col" width="5%">Estado</th>
             <th scope="col" width="5%">Acciones</th>
+            
           </tr>
         </thead>
         
@@ -37,12 +39,12 @@
               
               <td>{{$inquiry->specialties_nombre}}</td>
               <td>{{date('d-m-Y',strtotime($inquiry->fecha))}}</td>
-
+              <td>{{$inquiry->tipo}}</td>
               <td >
                 <form  action="{{route('inquiries.destroy',$inquiry->id)}}" method="post">
                   @csrf
                   @method('delete')
-                    {{-- <a  class="btn btn-primary btn-sm" href="{{route('persons.show',$persona)}}">Ver</a>   --}}
+                    <a  class="btn btn-primary btn-sm" href="{{route('patients.show',$inquiry->patient_id)}}">Ver</a>  
                     {{-- <a class="btn btn-info btn-sm" href="{{route('persons.edit',$persona)}}">Editar</a>                  --}}
                     <button class="btn btn-danger btn-sm" onclick="return confirm('¿ESTA SEGURO DE  BORRAR?')" 
                     value="Borrar">Eliminar</button>

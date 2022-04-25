@@ -7,7 +7,9 @@ use App\Models\DoctorSpecialty;
 use App\Models\inquiry;
 use App\Models\Patient;
 use App\Models\Specialty;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class InquiryController extends Controller
 {
@@ -18,7 +20,15 @@ class InquiryController extends Controller
      */
     public function index()
     {
-        $inquiries = inquiry::getDoctorSpecilityInquiryAll();
+        $tipo = Auth::user();
+        // if ($tipo == User::ADMIN) {
+        //     $inquiries = inquiry::getDoctorSpecilityInquiryAll();
+        // } else {
+        //     $inquiries = '';    
+        // }
+        // return $tipo->doctor->specialties;
+        return inquiry::find(1)->doctorSpeciality;
+        
         // return $inquiries;
         return view('inquiry.index', compact('inquiries'));
     }

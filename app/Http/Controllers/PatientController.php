@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Patient;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class PatientController extends Controller
@@ -57,9 +59,20 @@ class PatientController extends Controller
      * @param  \App\Models\Patient  $patient
      * @return \Illuminate\Http\Response
      */
-    public function show(Patient $patient)
+    public function show($patient_id)
     {
-        //
+        $user_id = Patient::find($patient_id)->user_id;//->get('id');
+        // $patient = User::where('id', $user_id)->get()[0];
+        $patient = DB::table('users')->where('id',$user_id)->first();
+        $patient->add([ 
+            // 'edad' => Carbon::parse($patient->fecha)->age,
+            'edad' => 'dasd',
+            
+        ]);
+        return $patient;
+        // return $patient->fecha->diff(date('Y-m-d'));
+        // return $patient->fecha.$edad;
+        return view('patient.show', compact('patient'));
     }
 
     /**

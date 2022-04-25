@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\DB;
 class Inquiry extends Model
 {
     use HasFactory;
+    const F = 'Finalizado';
+    const P = 'Pendiente';
     protected $fillable = ['descripcion', 'fecha', 'doctorSpecialty_id', 'patient_id'];
     //relacion de uno a muchos inversa
     public function doctorSpeciality()
