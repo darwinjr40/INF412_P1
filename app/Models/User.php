@@ -11,17 +11,18 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
-
+    // const SEXO = ['MUJER' => 'F', 'HOMBRE' => 'M'];
     const DOCTOR = 'D';
     const ADMIN = 'A';
     const PACIENTE = 'P';
+    const MUJER = 'F';
+    const HOMBRE = 'M';
 
     protected $fillable = [
         'name',
         'email',
         'password',
         'tipo',
-        
         'nombre',
         'sexo',
         'fecha',
@@ -50,12 +51,16 @@ class User extends Authenticatable
     //doctor tiene 1 usuario
     public function doctor()
     {
-        return $this->hasOne(Doctor::class);
+        return $this->hasOne(Doctor::class, 'id');
+            // $this->hasOne(Doctor::class, 'foranea_user', 'primary_User');
     }
 
     //doctor tiene 1 usuario
     public function patient()
     {
-        return $this->hasOne(Patient::class);
+        return $this->hasOne(Patient::class, 'id');
     }
+
+    
+
 }

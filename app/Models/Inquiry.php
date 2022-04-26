@@ -11,11 +11,12 @@ class Inquiry extends Model
     use HasFactory;
     const F = 'Finalizado';
     const P = 'Pendiente';
-    protected $fillable = ['descripcion', 'fecha', 'doctorSpecialty_id', 'patient_id'];
+    protected $fillable = ['descripcion', 'fecha', 'patient_id', 'doctor_id', 'specialty_id'];
     //relacion de uno a muchos inversa
-    public function doctorSpeciality()
+    public function doctorSpecialty()
     {
-        return $this->belongsTo(DoctorSpecialty::class);
+        // return $this->belongsTo(DoctorSpecialty::class)
+        return DoctorSpecialty::where('doctor_id', $this->doctor_id)->where('specialty_id', $this->specialty_id)->first();
     }
 
     //relacion de uno a muchos inversa

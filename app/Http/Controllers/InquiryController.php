@@ -21,15 +21,26 @@ class InquiryController extends Controller
     public function index()
     {
         $tipo = Auth::user();
+        $tipo = User::find(2);
+
+
         // if ($tipo == User::ADMIN) {
-        //     $inquiries = inquiry::getDoctorSpecilityInquiryAll();
+             //$inquiries = inquiry::getDoctorSpecilityInquiryAll();
         // } else {
-        //     $inquiries = '';    
+             $inquiries = '';    
         // }
-        // return $tipo->doctor->specialties;
-        return inquiry::find(1)->doctorSpeciality;
-        
-        // return $inquiries;
+        // $inquiries = inquiry::find(1); 
+        // return $inquiries->doctorSpecialty()->doctor()->user->name;
+        $inquiries = inquiry::all(); 
+        $inquiries = inquiry::join('users as p', 'inquiries.patient_id', '=', 'p.id')
+                            ->join('users as d', 'inquiries.doctor_id', '=', 'd.id')
+                            ->join('specialties as s', 'inquiries.specialty_id', '=', 's.id')
+                            ->select(
+                                'inquiries.*', 'd.nombre as doctor_nombre', 
+                                'p.nombre as patient_nombre',
+                                's.nombre as specialty_nombre'  
+                             )
+        ->get();    
         return view('inquiry.index', compact('inquiries'));
     }
 
@@ -40,15 +51,15 @@ class InquiryController extends Controller
      */
     public function create()
     {
-        $doctorsSpecialties = DoctorSpecialty::getDoctorSpecilityAll();
+        // $doctor_specialty = DoctorSpecialty::getDoctorSpecilityAll();
+        $doctor_specialty = Specialty::all();
+
         // return $d[0]->doctor_nombre;
         $patients = Patient::getPatientsAll1();
         // return $patients;
         // Doctor::find(3)->specialties()->attach([1, 4, 5, 6], ['fecha'=>date('Y/m/d')]);
-
         // Specialty::find(7)->doctors()->attach([1], ['fecha'=>date('Y/m/d')]);
-
-        return view('inquiry.create', compact('doctorsSpecialties','patients'));
+        return view('inquiry.create', compact('doctor_specialty','patients'));
     }
 
     /**
@@ -59,14 +70,9 @@ class InquiryController extends Controller
      */
     public function store(Request $request)
     {
-        // Inquiry::create([
-        //     'fecha'   => date('Y/m/d'),
-        //     'doctorSpeciality_id' => $request->doctorSpeciality_id,
-        //     'patient_id' => $request->patient_id,
-        //     'descripcion' => $request->descripcion
-        // ]);
-        // return$request;
-        $request->merge([ 'fecha' => date('Y/m/d')]);
+        $request->merge([ 
+            'fecha' => date('Y/m/d'),
+        ]);
         $user = Inquiry::create($request->all());
         return redirect()->route('inquiries.index');          
     }

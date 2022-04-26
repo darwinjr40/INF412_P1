@@ -25,7 +25,7 @@
             <th scope="col" width= "15%">Especialidad</th>
             <th scope="col" width= "15%">fecha</th>
             <th scope="col" width="5%">Estado</th>
-            <th scope="col" width="5%">Acciones</th>
+            <th scope="col" width="15%">Acciones</th>
             
           </tr>
         </thead>
@@ -34,10 +34,10 @@
             @foreach ($inquiries as $inquiry)
             <tr>
               <td>{{$inquiry->id}}</td>
-              <td>{{$inquiry->doctors_nombre}}</td>
-              <td>{{$inquiry->patients_nombre}}</td>
+              <td>{{$inquiry->doctor_nombre}}</td>
+              <td>{{$inquiry->patient_nombre}}</td>
               
-              <td>{{$inquiry->specialties_nombre}}</td>
+              <td>{{$inquiry->specialty_nombre}}</td>
               <td>{{date('d-m-Y',strtotime($inquiry->fecha))}}</td>
               <td>{{$inquiry->tipo}}</td>
               <td >

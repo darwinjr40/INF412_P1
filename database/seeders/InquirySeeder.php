@@ -16,48 +16,58 @@ class InquirySeeder extends Seeder
     {
         Inquiry::create([
             'fecha'   => date('Y/m/d'),
-            // 'doctor_id' => 2,
-            // 'speciality_id' => 1, 
-            'doctorSpecialty_id' => 2,
-            'patient_id' => 1, 
+            'doctor_id' => 2,
+            'specialty_id' => 1, 
+            // 'doctorSpecialty_id' => 2,
+            'patient_id' => 5, 
         ]);
 
         Inquiry::create([
             'fecha'   => date('Y/m/d'),
-            // 'doctor_id' => 3,
-            // 'speciality_id' => 1, 
-            'doctorSpecialty_id' => 3,
-            'patient_id' => 1, 
-
-        ]);
-
-        Inquiry::create([
-            'fecha'   => date('Y/m/d'),
-            // 'doctor_id' => 1,
-            // 'speciality_id' => 7, 
-            'doctorSpecialty_id' => 4,
-
-            'patient_id' => 2, 
+            'doctor_id' => 3,
+            'specialty_id' => 1, 
+            // 'doctorSpecialty_id' => 3,
+            'patient_id' => 5, 
 
         ]);
 
         Inquiry::create([
             'fecha'   => date('Y/m/d'),
-            // 'doctor_id' => 3,
-            // 'speciality_id' => 5, 
-            'doctorSpecialty_id' => 5,
+            'doctor_id' => 3,
+            'specialty_id' => 1, 
+            // 'doctorSpecialty_id' => 4,
 
-            'patient_id' => 3, 
+            'patient_id' => 6, 
 
         ]);
 
         Inquiry::create([
             'fecha'   => date('Y/m/d'),
-            // 'doctor_id' => 3,
-            // 'speciality_id' => 4, 
-            'doctorSpecialty_id' => 6,
+            'doctor_id' => 3,
+            'specialty_id' => 5, 
+            // 'doctorSpecialty_id' => 5,
 
-            'patient_id' => 2, 
+            'patient_id' => 7, 
+
+        ]);
+
+        Inquiry::create([
+            'fecha'   => date('Y/m/d'),
+            'doctor_id' => 3,
+            'specialty_id' => 4, 
+            // 'doctorSpecialty_id' => 6,
+
+            'patient_id' => 6, 
+
+        ]);
+
+        Inquiry::create([
+            'fecha'   => date('Y/m/d'),
+            'doctor_id' => 4,
+            'specialty_id' => 7, 
+            // 'doctorSpecialty_id' => 6,
+
+            'patient_id' => 6, 
 
         ]);
     }

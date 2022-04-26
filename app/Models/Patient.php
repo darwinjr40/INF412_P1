@@ -9,12 +9,13 @@ use Illuminate\Support\Facades\DB;
 class Patient extends Model
 {
     use HasFactory;
-    protected $fillable = ['user_id'];
+    protected $fillable = ['id'];
 
 
     //relacion de uno a uno inversa
     public function user(){
-        return $this->belongsTo(User::class);
+        // return User::where('id',  $this->id)->first();
+        return $this->belongsTo(User::class, 'id');
     }
 
     static public function getPatientsAll()
@@ -29,13 +30,7 @@ class Patient extends Model
     }
     static public function getPatientsAll1()
     {
-        $patients = DB::select('
-            select  patients.user_id, patients.id as "patient_id", 
-            users.nombre as "patient_nombre" 
-            from  users, patients 
-            where users.id = patients.user_id 
-        ');
-        // $doctors = User::all()->where('tipo', User::DOCTOR);
+         $patients = User::all()->where('tipo', User::PACIENTE);
         return $patients;
     }
 }

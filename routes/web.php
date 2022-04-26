@@ -34,3 +34,5 @@ Route::resource('doctors', DoctorController::class);
 Route::resource('patients', PatientController::class);
 
 Route::resource('inquiries', InquiryController::class);
+
+Route::get('/doctor/{id}', [DoctorController::class, 'getDoctors'])->name('doctors.getDoctors');

@@ -41,7 +41,7 @@
               <td>{{$doctor->email}}</td>
 
               <td >
-                <form  action="{{route('doctors.destroy',$doctor->id)}}" method="post">
+                <form  action="{{route('doctors.destroy',$doctor)}}" method="post">
                   @csrf
                   @method('delete')
                     {{-- <a  class="btn btn-primary btn-sm" href="{{route('persons.show',$persona)}}">Ver</a>   --}}

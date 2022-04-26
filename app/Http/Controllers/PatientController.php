@@ -49,7 +49,7 @@ class PatientController extends Controller
         ]);
         $request->merge([ 'password' => Hash::make($request->password), 'tipo' => User::PACIENTE]);
         $user = User::create($request->all());
-        Patient::create(['user_id' => $user->id]);
+        Patient::create(['id' => $user->id]);
         return redirect()->route('patients.index');
     }
 
@@ -104,12 +104,13 @@ class PatientController extends Controller
      * @param  \App\Models\Patient  $patient
      * @return \Illuminate\Http\Response
      */
-    public function destroy( $id_user)
+    public function destroy(  $id)
     {
-        $patient= Patient::where('user_id', $id_user)->first();
-        $user = User::find($id_user);
+        // return $id_user;
+        // $patient= Patient::where('user_id', $id_user)->first();
+        $patient = User::find($id);
         $patient->delete();
-        $user->delete();
+        // $user->delete();
         return redirect()->route('patients.index'); 
     }
 }

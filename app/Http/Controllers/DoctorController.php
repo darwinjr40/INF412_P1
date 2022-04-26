@@ -3,20 +3,31 @@
 namespace App\Http\Controllers;
 
 use App\Models\Doctor;
+use App\Models\DoctorSpecialty;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class DoctorController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function getDoctors($id)
+    {
+         $user_id = DoctorSpecialty::join('users as d', 'd.id', '=', 'doctor_specialty.doctor_id')
+         ->where('specialty_id', $id )
+        ->select(
+            'd.id as doctor_id',
+            'd.nombre as doctor_nombre',
+        )
+        ->get();;
+
+        return $user_id;
+    }
+
     public function index()
     {
         $doctors = Doctor::getDoctorsAll();
+        // $doctors = User::all();
+
         return view('doctor.index', compact('doctors'));
     }
 
@@ -45,9 +56,12 @@ class DoctorController extends Controller
             'email' => ' required | unique:users',
             'password' => ' required'
         ]);
-        $request->merge([ 'password' => Hash::make($request->password), 'tipo' => User::DOCTOR]);
+        $request->merge([
+             'password' => Hash::make($request->password),
+              'tipo' => User::DOCTOR
+        ]);
         $user = User::create($request->all());
-        Doctor::create(['user_id' => $user->id]);
+        Doctor::create(['id' => $user->id]);
         return redirect()->route('doctors.index');  
     }
 
@@ -91,11 +105,9 @@ class DoctorController extends Controller
      * @param  \App\Models\Doctor  $doctor
      * @return \Illuminate\Http\Response
      */
-    public function destroy( $id_user)
+    public function destroy($user)
     {
-        $doctor= Doctor::where('user_id', $id_user)->first();
-        $user = User::find($id_user);
-        $doctor->delete();
+        $user =User::find($user); 
         $user->delete();
         return redirect()->route('doctors.index'); 
     }

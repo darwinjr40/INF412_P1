@@ -30,7 +30,7 @@ class UserSeeder extends Seeder
             'password'=> Hash::make('0000'),
             'tipo'=> User::DOCTOR,
             'nombre'=> 'Max Coimbra Herrera',
-            'sexo'=> Doctor::HOMBRE,
+            'sexo'=> User::HOMBRE,
             'fecha'=> '1974-07-02',
         ]);
 
@@ -40,7 +40,7 @@ class UserSeeder extends Seeder
             'password'=> Hash::make('0000'),
             'tipo'=> User::DOCTOR,
             'nombre'=> 'Maite Herrera Lima',
-            'sexo'=> Doctor::MUJER,
+            'sexo'=> User::MUJER,
             'fecha'=> '1970-07-02',
         ]);
 
@@ -51,7 +51,7 @@ class UserSeeder extends Seeder
             'tipo'=> User::DOCTOR,
             'nombre'=> 'Susibeth Lopez Garcia',
             // 'fecha'=> '1974-07-02',
-            'sexo'=> Doctor::MUJER,
+            'sexo'=> User::MUJER,
             'fecha'=> date('d-m-y',strtotime('1980-05-10')),
              // 'hora' => date('H:i:s'),
             // 'fecha' => date('Y/m/d'),
@@ -65,7 +65,7 @@ class UserSeeder extends Seeder
             'password'=> Hash::make('0000'),
             'tipo'=> User::PACIENTE,
             'nombre'=> 'Maximo Hugo Ondarza',
-            'sexo'=> Doctor::HOMBRE,
+            'sexo'=> User::HOMBRE,
             'fecha'=> '1990-04-24',
         ]);
 

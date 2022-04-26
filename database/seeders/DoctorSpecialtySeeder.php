@@ -19,7 +19,7 @@ class DoctorSpecialtySeeder extends Seeder
 
         Doctor::find(3)->specialties()->attach([1, 4, 5, 6], ['fecha'=>date('Y/m/d')]);
 
-        Specialty::find(7)->doctors()->attach([1], ['fecha'=>date('Y/m/d')]);
+        Specialty::find(7)->doctors()->attach([4], ['fecha'=>date('Y/m/d')]);
 
         
     }

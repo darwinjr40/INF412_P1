@@ -15,15 +15,19 @@ class DoctorSeeder extends Seeder
     public function run()
     {
         Doctor::create([
-            'user_id' => 2,
+            'id' => 2,
         ]);
 
         Doctor::create([            
-            'user_id' => 3,
+            'id' => 3,
         ]);
         
         Doctor::create([            
-            'user_id' => 4,           
+            'id' => 4,           
         ]);
+
+        // Doctor::create([            
+        //     'user_id' => 4,           
+        // ]);
     }
 }

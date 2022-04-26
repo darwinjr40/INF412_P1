@@ -15,8 +15,14 @@ class CreateDoctorsTable extends Migration
     public function up()
     {
         Schema::create('doctors', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->nullable()->constrained()-> onDelete('cascade');
+            // $table->id();
+            // $table->foreignId('user_id')->nullable()->constrained()-> onDelete('cascade');
+            $table->unsignedBigInteger('id');
+            $table->foreign('id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
+            $table->primary(['id']);
             $table->timestamps();
         });
     }

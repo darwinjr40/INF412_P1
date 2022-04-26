@@ -11,13 +11,13 @@ class Doctor extends Model
     use HasFactory;
     const MUJER = 'F';
     const HOMBRE = 'M';
-    protected $fillable = ['user_id'];//los atributos que guardaremos
+    protected $fillable = ['id'];//los atributos que guardaremos
     // protected $guarded = ['ci','nombre','sexo','telefono','email', 'domicilio'];//los atributos que no guardaremos si es que existiera
     // protected $guarded = []; //en este caso, vacio por que quiero que gurde todos en asignacion masiva
 
     //relacion de uno a uno inversa
     public function user(){
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'id');
     }
 
     //realacion de muchos a muchos
@@ -26,14 +26,11 @@ class Doctor extends Model
         // return "hola";
     }
 
-
+    public function doctorSpecialty(){
+        return doctorSpecialty::where('doctor_id', $this->id)->get();
+    }
 
     static public function getDoctorsAll(){
-        // $doctors = DB::select('
-        //     select doctors.*, users.name, users.email, users.tipo
-        //     from doctors , users 
-        //     where doctors.user_id = users.id
-        // ');
         $doctors = User::all()->where('tipo', User::DOCTOR);
         return $doctors;
     }

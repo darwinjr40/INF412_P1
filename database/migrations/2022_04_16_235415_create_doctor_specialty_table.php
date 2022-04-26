@@ -14,16 +14,21 @@ class CreateDoctorSpecialtyTable extends Migration
     public function up()
     {
         Schema::create('doctor_specialty', function (Blueprint $table) {
-            $table->id();
+            
+            // $table->id();
+            // $table->foreignId('doctor_id')->constrained()->onDelete('cascade');
+            // $table->foreignId('specialty_id')->constrained()->onDelete('cascade');//si eliminamos la categoria(se eliminaran los posts asociados ala categoria)
+            
+            $table->unsignedBigInteger('doctor_id');
+            $table->unsignedBigInteger('specialty_id');
+            $table->date('fecha')->nullable();
+            $table->foreign('doctor_id')->references('id')->on('doctors');
+            $table->foreign('specialty_id')->references('id')->on('specialties');
+            $table->primary(['doctor_id','specialty_id']);
+            $table->timestamps();
             // $table->primary(['doctor_id', 'specialty_id']);
             /* $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories'); */
-            $table->foreignId('doctor_id')->constrained()->onDelete('cascade');
-            $table->foreignId('specialty_id')->constrained()->onDelete('cascade');//si eliminamos la categoria(se eliminaran los posts asociados ala categoria)
-            $table->date('fecha')->nullable();
-            
-
-            $table->timestamps();
         });
     }
 

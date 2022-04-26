@@ -15,16 +15,16 @@ class PatientSeeder extends Seeder
     public function run()
     {
         Patient::create([
-            'user_id' => 5,
+            'id' => 5,
         ]);
 
         Patient::create([
             
-            'user_id' => 6,
+            'id' => 6,
         ]);
         Patient::create([
             
-            'user_id' => 7,
+            'id' => 7,
            
         ]);
     }

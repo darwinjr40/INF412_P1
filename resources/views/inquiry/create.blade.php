@@ -22,30 +22,31 @@
             <div class="row row justify-content-center">
                  {{-- SELECCIONAR Doctor y Especialidad --}}
                 <div class="col-4">
-                    <h5>Doctores:</h5>
-                    <select name="doctorSpecialty_id" id="doctorSpecialty_id" class="form-control" >
-                        {{-- value="" <=> value=null  --}}
-                         <option value="">Seleccione un Doctor</option>
-                            @foreach ($doctorsSpecialties as $doctorSpecialty)
-                                <option value="{{$doctorSpecialty->doctorSpecialty_id}}">  
-                                        {{$doctorSpecialty->doctor_nombre. ':   ( '. $doctorSpecialty->specialty_nombre.' )'}}  
-                                </option>
-                            @endforeach
-                    </select>
+                    <h5>Especialidad:</h5>
+                    <select name="specialty_id" id="select-speciality" class="form-control" >
+                         <option value="">Seleccione una Especialidad</option>
+                         @foreach ($doctor_specialty as $doctorSpecialty)
+                                <option value="{{$doctorSpecialty->id}}">  
+                                        {{-- {{$doctorSpecialty->doctor_nombre. ':   ( '. $doctorSpecialty->specialty_nombre.' )'}}   --}}
+                                        {{$doctorSpecialty->nombre}}  
 
-                    @error('idProducto')
-                        <p>DEBE INGRESAR BIEN EL PRODUCTO</p>
-                    @enderror
+                                </option>
+                          @endforeach
+                    </select>
+                    <h5>Doctores:</h5>
+                    <select name="doctor_id" id="select-doctor" class="form-control" >
+                         <option value="">Seleccione un Doctor</option>
+                          
+                    </select>
                 </div>  
                 {{-- INGRESAR CANTIDAD --}}
                 <div class="col-4">
                     <h5>Pacientes:</h5>
                     <select name="patient_id" id="patient_id" class="form-control" >
-                        {{-- value="" <=> value=null  --}}
                          <option value="">Seleccione un Paciente</option>
                             @foreach ($patients as $patient)
-                                <option value="{{$patient->patient_id}}">  
-                                        {{$patient->patient_nombre}}  
+                                <option value="{{$patient->id}}">  
+                                        {{$patient->nombre}}  
                                 </option>
                             @endforeach
                     </select>
@@ -74,6 +75,9 @@
     <link rel="stylesheet" href="/css/admin_custom.css">
 @stop
 
+
 @section('js')
     <script> console.log('Hi!'); </script>
+    <script type="text/javascript" src="{{ asset('js/inquiry.js') }}"></script>
+
 @stop
