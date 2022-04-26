@@ -20,19 +20,7 @@ class InquiryController extends Controller
      */
     public function index()
     {
-        $tipo = Auth::user();
-        $tipo = User::find(2);
-
-
-        // if ($tipo == User::ADMIN) {
-             //$inquiries = inquiry::getDoctorSpecilityInquiryAll();
-        // } else {
-             $inquiries = '';    
-        // }
-        // $inquiries = inquiry::find(1); 
-        // return $inquiries->doctorSpecialty()->doctor()->user->name;
-        $inquiries = inquiry::all(); 
-        $inquiries = inquiry::join('users as p', 'inquiries.patient_id', '=', 'p.id')
+         $inquiries = inquiry::join('users as p', 'inquiries.patient_id', '=', 'p.id')
                             ->join('users as d', 'inquiries.doctor_id', '=', 'd.id')
                             ->join('specialties as s', 'inquiries.specialty_id', '=', 's.id')
                             ->select(
