@@ -44,7 +44,7 @@
                 <form  action="{{route('inquiries.destroy',$inquiry->id)}}" method="post">
                   @csrf
                   @method('delete')
-                    <a  class="btn btn-primary btn-sm" href="{{route('patients.show',$inquiry->patient_id)}}">Ver</a>  
+                    {{-- <a  class="btn btn-primary btn-sm" href="{{route('patients.show',$inquiry->patient_id)}}">Ver</a>   --}}
                     {{-- <a class="btn btn-info btn-sm" href="{{route('persons.edit',$persona)}}">Editar</a>                  --}}
                     <button class="btn btn-danger btn-sm" onclick="return confirm('¿ESTA SEGURO DE  BORRAR?')" 
                     value="Borrar">Eliminar</button>

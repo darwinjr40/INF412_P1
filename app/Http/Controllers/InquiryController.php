@@ -2,14 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Doctor;
-use App\Models\DoctorSpecialty;
-use App\Models\inquiry;
+use App\Models\Inquiry;
 use App\Models\Patient;
 use App\Models\Specialty;
-use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class InquiryController extends Controller
 {
@@ -20,16 +16,7 @@ class InquiryController extends Controller
      */
     public function index()
     {
-         $inquiries = inquiry::join('users as p', 'inquiries.patient_id', '=', 'p.id')
-                            ->join('users as d', 'inquiries.doctor_id', '=', 'd.id')
-                            ->join('specialties as s', 'inquiries.specialty_id', '=', 's.id')
-                            ->select(
-                                'inquiries.*', 'd.nombre as doctor_nombre', 
-                                'p.nombre as patient_nombre',
-                                's.nombre as specialty_nombre'  
-                             )
-        ->get();    
-        return inquiry::all();
+        $inquiries = Inquiry::all();
         return view('inquiry.index', compact('inquiries'));
     }
 
@@ -63,16 +50,16 @@ class InquiryController extends Controller
             'fecha' => date('Y/m/d'),
         ]);
         $user = Inquiry::create($request->all());
-        return redirect()->route('inquiries.index');          
+        return redirect()->route('inquiries.index'); 
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\inquiry  $inquiry
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(inquiry $inquiry)
+    public function show($id)
     {
         //
     }
@@ -80,10 +67,10 @@ class InquiryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\inquiry  $inquiry
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(inquiry $inquiry)
+    public function edit($id)
     {
         //
     }
@@ -92,10 +79,10 @@ class InquiryController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\inquiry  $inquiry
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, inquiry $inquiry)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -103,12 +90,12 @@ class InquiryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\inquiry  $inquiry
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy( $id)
+    public function destroy($id)
     {
         inquiry::find($id)->delete();
-        return redirect()->route('inquiries.index');  
+        return redirect()->route('inquiries.index'); 
     }
 }
