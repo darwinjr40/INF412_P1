@@ -16,7 +16,16 @@ class InquiryController extends Controller
      */
     public function index()
     {
-        $inquiries = Inquiry::all();
+        $inquiries = inquiry::join('users as p', 'inquiries.patient_id', '=', 'p.id')
+                            ->join('users as d', 'inquiries.doctor_id', '=', 'd.id')
+                            ->join('specialties as s', 'inquiries.specialty_id', '=', 's.id')
+                            ->select(
+                                'inquiries.*', 'd.nombre as doctor_nombre', 
+                                'p.nombre as patient_nombre',
+                                's.nombre as specialty_nombre'  
+                             )
+        ->get();    
+        // return inquiry::all();
         return view('inquiry.index', compact('inquiries'));
     }
 
