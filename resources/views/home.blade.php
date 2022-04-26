@@ -71,7 +71,7 @@
 @stop
 
 @section('css')
-    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="{{ asset('css/home.css') }}">
 	
 @stop
 

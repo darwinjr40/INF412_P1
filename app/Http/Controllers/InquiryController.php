@@ -29,6 +29,7 @@ class InquiryController extends Controller
                                 's.nombre as specialty_nombre'  
                              )
         ->get();    
+        return inquiry::all();
         return view('inquiry.index', compact('inquiries'));
     }
 
