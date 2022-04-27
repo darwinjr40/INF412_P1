@@ -25,7 +25,10 @@ class Inquiry extends Model
         return $this->belongsTo(patient::class);
     }
 
-
+    //relacion de uno a uno 
+    public function vital(){
+        return $this->hasOne(Vital::class);
+    }
 
 
 

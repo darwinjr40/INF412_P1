@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Inquiry;
 use App\Models\Patient;
 use App\Models\Specialty;
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class InquiryController extends Controller
@@ -70,7 +72,11 @@ class InquiryController extends Controller
      */
     public function show($id)
     {
-        //
+        $inquiry = Inquiry::find($id);
+        $patient = collect( User::where('id',$inquiry->patient_id)->first());
+        $edad = Carbon::parse($patient['fecha'])->age;
+        $patient = $patient->merge(['edad' =>  $edad]);
+       return  view('inquiry.show', compact('patient', 'inquiry'));
     }
 
     /**
