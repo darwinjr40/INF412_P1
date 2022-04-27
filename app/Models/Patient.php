@@ -26,8 +26,9 @@ class Patient extends Model
 
     //relacion de uno a muchos
     public function inquiries(){
-        return $this->belongsTo(inquiries::class);
+        return $this->hasMany(inquiries::class);
     }
+
     static public function getPatientsAll1()
     {
          $patients = User::all()->where('tipo', User::PACIENTE);

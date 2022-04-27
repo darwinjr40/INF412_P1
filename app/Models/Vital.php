@@ -24,7 +24,7 @@ class Vital extends Model
     ];
 
 
-    //relacion de uno a uno 
+    //relacion de uno a uno inversa
     public function inquiry(){
         return $this->belongsTo(Inquiry::class);
     }

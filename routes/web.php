@@ -40,11 +40,15 @@ Route::resource('patients', PatientController::class);
 Route::resource('inquiries', InquiryController::class);
 
 Route::resource('vitals',   VitalController::class);
-Route::resource('recipes', RecipeController::class);
-
-
 Route::get('vital/{inquery_id}', [VitalController::class, 'create2'])->name('vitals.create2');
 Route::post('vital/{inquery_id}', [VitalController::class, 'store2'])->name('vitals.store2');
+
+Route::resource('recipes', RecipeController::class);
+Route::post('recipe/{inquery_id}', [RecipeController::class, 'store2'])->name('recipes.store2');
+Route::delete('recipe//{recipe_id}/{inquery_id}', [RecipeController::class, 'destroy2'])->name('recipes.destroy2');
+
+
+
 
 
 

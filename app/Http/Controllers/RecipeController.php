@@ -51,6 +51,13 @@ class RecipeController extends Controller
             ->with('success', 'Recipe created successfully.');
     }
 
+    public function store2(Request $request, $inquiry_id)
+    {
+        $request->merge(['inquiry_id' => $inquiry_id]);
+        $recipe = Recipe::create($request->all());
+        return redirect()->route('inquiries.show', $inquiry_id);
+    }
+
     /**
      * Display the specified resource.
      *
@@ -105,5 +112,12 @@ class RecipeController extends Controller
 
         return redirect()->route('recipes.index')
             ->with('success', 'Recipe deleted successfully');
+    }
+
+    public function destroy2($id, $inquiry_id)
+    {
+        // return $id. $inquiry_id;
+        $recipe = Recipe::find($id)->delete();
+        return redirect()->route('inquiries.show', $inquiry_id);
     }
 }

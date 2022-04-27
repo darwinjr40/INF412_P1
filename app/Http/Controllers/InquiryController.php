@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Inquiry;
 use App\Models\Patient;
+use App\Models\Recipe;
 use App\Models\Specialty;
 use App\Models\User;
+use App\Models\Vital;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -70,13 +72,17 @@ class InquiryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($inquiry_id)
     {
-        $inquiry = Inquiry::find($id);
+        $inquiry = Inquiry::find($inquiry_id);
+        $specialty = Specialty::find($inquiry->specialty_id);
+        $doctor =  User::find($inquiry->doctor_id);
         $patient = collect( User::where('id',$inquiry->patient_id)->first());
         $edad = Carbon::parse($patient['fecha'])->age;
         $patient = $patient->merge(['edad' =>  $edad]);
-       return  view('inquiry.show', compact('patient', 'inquiry'));
+        $vital = Vital::where('inquiry_id', $inquiry_id)->first();
+        $recipes = Recipe::all()->where('inquiry_id', $inquiry_id);
+       return  view('inquiry.show', compact('patient', 'inquiry', 'specialty', 'doctor', 'vital', 'recipes'));
     }
 
     /**

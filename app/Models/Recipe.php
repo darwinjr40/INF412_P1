@@ -22,25 +22,28 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Recipe extends Model
 {
-    
-    static $rules = [
-		'descripcion' => 'required',
-		'medicamento' => 'required',
-		'presentacion' => 'required',
-		'dosis' => 'required',
-		'duracion' => 'required',
-		'cantidad' => 'required',
-    ];
 
-    protected $perPage = 20;
+  static $rules = [
+    'descripcion' => 'required',
+    'medicamento' => 'required',
+    'presentacion' => 'required',
+    'dosis' => 'required',
+    'duracion' => 'required',
+    'cantidad' => 'required',
+  ];
 
-    /**
-     * Attributes that should be mass-assignable.
-     *
-     * @var array
-     */
-    protected $fillable = ['descripcion','medicamento','presentacion','dosis','duracion','cantidad'];
+  protected $perPage = 20;
 
+  /**
+   * Attributes that should be mass-assignable.
+   *
+   * @var array
+   */
+  protected $fillable = ['descripcion', 'medicamento', 'presentacion', 'dosis', 'duracion', 'cantidad', 'inquiry_id'];
 
-
+  //relacion de uno a muchos
+  public function inquiry()
+  {
+    return $this->belongsTo(Inquiry::class);
+  }
 }

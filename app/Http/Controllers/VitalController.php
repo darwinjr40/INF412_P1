@@ -20,12 +20,19 @@ class VitalController extends Controller
         return view('vital.create2', compact('inquiry', 'patient', 'doctor'));
     }
 
-    public function store2(Request $request, $inquery_id)
+    public function store2(Request $request, $inquiry_id)
     {
-        $request->merge(['inquiry_id' => $inquery_id]);
-        Vital::create($request->all());
-        return "todo bien2";
-        return redirect()->route('inquiries.show', $inquery_id);
+        $vital = Vital::where('inquiry_id', $inquiry_id)->first();
+        if ($vital) {
+            $vital->update($request->all());
+        } else {
+            $request->merge(['inquiry_id' => $inquiry_id]);
+            Vital::create($request->all());
+        }
+         
+        
+        // return "todo bien2";
+        return redirect()->route('inquiries.show', $inquiry_id);
     }
 
     public function index()
