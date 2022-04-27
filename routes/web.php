@@ -19,13 +19,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 Route::get('/', function () {
-    // return "hola";
-    return redirect('/login');
+    return view('welcome');
 });
+// Route::get('/', function () {
+//     return "hola";
+//     return redirect('/login');
+// });
 
 Auth::routes();
 
