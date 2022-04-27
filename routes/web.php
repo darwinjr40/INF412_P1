@@ -19,19 +19,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 // Route::get('/', function () {
-//     return "hola";
-//     return redirect('/login');
+//     return view('welcome');
 // });
+Route::get('/', function () {
+    // return "hola";
+    // return redirect('/login');
+    return view('auth.login');
+});
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::resource('doctors', DoctorController::class);
+Route::resource('doctors', DoctorController::class)->middleware('auth');
 
 Route::resource('patients', PatientController::class);
 

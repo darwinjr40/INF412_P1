@@ -11,11 +11,9 @@ function onSelectProjectChange(){
     //     return;
     // }
     
-    // $.get('/clinica/public/doctor/'+speciality_id, function(data){
-    // $.get(' http://193.123.99.38/public/doctor/'+speciality_id, function(data){
+    // $.get('/clinica/public/doctor/'+speciality_id, function(data){  
+    // $.get(' http://193.123.99.38/v1/doctor/'+speciality_id, function(data){
     $.get('/v1/doctor/'+speciality_id, function(data){
-
-
         // console.log(data);  
         var xd = '<option value="">Seleccione un Doctor</option>';
         for (var i = 0; i < data.length; i++) {
