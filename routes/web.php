@@ -3,6 +3,7 @@
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\InquiryController;
 use App\Http\Controllers\PatientController;
+use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\VitalController;
 use App\Models\Doctor;
 use Illuminate\Support\Facades\Auth;
@@ -39,6 +40,8 @@ Route::resource('patients', PatientController::class);
 Route::resource('inquiries', InquiryController::class);
 
 Route::resource('vitals',   VitalController::class);
+Route::resource('recipes', RecipeController::class);
+
 
 Route::get('vital/{inquery_id}', [VitalController::class, 'create2'])->name('vitals.create2');
 Route::post('vital/{inquery_id}', [VitalController::class, 'store2'])->name('vitals.store2');

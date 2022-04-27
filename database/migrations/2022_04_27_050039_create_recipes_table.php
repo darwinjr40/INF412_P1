@@ -21,8 +21,8 @@ class CreateRecipesTable extends Migration
             $table->string('dosis');
             $table->string('duracion');
             $table->string('cantidad');
-            $table->unsignedBigInteger('inquiry_id')->nullable();
-            $table->foreign('inquiry_id')->references('id')->on('inquiries')->onDelete('cascade');
+            // $table->unsignedBigInteger('inquiry_id')->nullable();
+            // $table->foreign('inquiry_id')->references('id')->on('inquiries')->onDelete('cascade');
             $table->timestamps();
         });
     }
