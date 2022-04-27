@@ -32,7 +32,6 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::resource('doctors', DoctorController::class);
-Route::get('/doctor/{id}', [DoctorController::class, 'getDoctors'])->name('doctors.getDoctors');
 
 Route::resource('patients', PatientController::class);
 
