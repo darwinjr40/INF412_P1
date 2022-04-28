@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Inquiry;
 use App\Models\Patient;
 use App\Models\User;
+use App\Models\Vital;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -61,18 +63,30 @@ class PatientController extends Controller
      */
     public function show($patient_id)
     {
-        $user_id = Patient::find($patient_id)->user_id;//->get('id');
-        // $patient = User::where('id', $user_id)->get()[0];
-        $patient = DB::table('users')->where('id',$user_id)->first();
-        $patient->add([ 
-            // 'edad' => Carbon::parse($patient->fecha)->age,
-            'edad' => 'dasd',
-            
-        ]);
-        return $patient;
-        // return $patient->fecha->diff(date('Y-m-d'));
-        // return $patient->fecha.$edad;
-        return view('patient.show', compact('patient'));
+        // $inquiry = Inquiry::find($inquiry_id);
+        // $specialty = Specialty::find($inquiry->specialty_id);
+        // $doctor =  User::find($inquiry->doctor_id);
+        
+        // $recipes = Recipe::all()->where('inquiry_id', $inquiry_id);
+
+        $inquiries = Inquiry::join('users as p', 'inquiries.patient_id', '=', 'p.id')
+        ->join('specialties as s', 'inquiries.specialty_id', '=', 's.id')
+        ->join('users as d', 'inquiries.doctor_id', '=', 'd.id')
+        ->where('patient_id', $patient_id)
+        ->select(
+            'inquiries.*', 'd.nombre as doctor_nombre',
+            'p.nombre as patient_nombre',
+            's.nombre as specialty_nombre'  
+         )
+        ->get();    
+
+        $patient = collect( User::where('id',$patient_id)->first());
+        $edad = Carbon::parse($patient['fecha'])->age;
+        $patient = $patient->merge(['edad' =>  $edad]);
+        // $vital = Vital::where('inquiry_id', $inquiry_id)->first();
+        // return $inquiries;
+       
+        return view('patient.show', compact('inquiries', 'patient'));
     }
 
     /**

@@ -26,7 +26,7 @@ class Patient extends Model
 
     //relacion de uno a muchos
     public function inquiries(){
-        return $this->hasMany(inquiries::class);
+        return $this->hasMany(Inquiry::class);
     }
 
     static public function getPatientsAll1()

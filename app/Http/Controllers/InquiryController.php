@@ -85,6 +85,18 @@ class InquiryController extends Controller
        return  view('inquiry.show', compact('patient', 'inquiry', 'specialty', 'doctor', 'vital', 'recipes'));
     }
 
+    public function show2($inquiry_id)
+    {
+        $inquiry = Inquiry::find($inquiry_id);
+        $specialty = Specialty::find($inquiry->specialty_id);
+        $doctor =  User::find($inquiry->doctor_id);
+        $patient = collect( User::where('id',$inquiry->patient_id)->first());
+        $patient = $patient->merge(['edad' =>  (Carbon::parse($patient['fecha'])->age)]);
+        $vital = Vital::where('inquiry_id', $inquiry_id)->first();
+        $recipes = Recipe::all()->where('inquiry_id', $inquiry_id);
+       return  view('inquiry.show2', compact('patient', 'inquiry', 'specialty', 'doctor', 'vital', 'recipes'));
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
