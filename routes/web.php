@@ -56,3 +56,4 @@ Route::get('stories', [HistoryController::class, 'index'])->name('stories.index'
 
 
 
+
