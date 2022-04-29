@@ -75,7 +75,7 @@ class ArchiveController extends Controller
         $inquiry = Inquiry::find($inquiry_id);
         // return $inquiry->url;
         // $url = $inquiry->url. $inquiry->name_file;
-        if ($inquiry->url != "") {
+        if ($inquiry->url) {
             return view('archive.show', compact('inquiry'));
         } else {
             abort(403);

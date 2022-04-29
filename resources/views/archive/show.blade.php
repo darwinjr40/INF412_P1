@@ -27,8 +27,8 @@
     <title>Document</title>
 </head>
 <body>
-    {{-- <h1>{{$inquiry->url}}</h1>
-    {{URL('')}} --}}
+    <h1>{{$inquiry->url}}</h1>
+    {{-- {{URL('')}} --}}
     <iframe src="{{URL($inquiry->url)}}" frameborder="0" style="width: 100%; height: 100vh;  "></iframe>
     {{-- <iframe src="{{URL('storage/2/2.pdf')}}" frameborder="0" style="width: 98%; height: 90vh;  "></iframe> --}}
 
