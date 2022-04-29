@@ -27,15 +27,18 @@ class ArchiveController extends Controller
         $patient = $patient->merge(['edad' =>  (Carbon::parse($patient['fecha'])->age)]);
         $vital = Vital::where('inquiry_id', $inquiry_id)->first();
         $recipes = Recipe::all()->where('inquiry_id', $inquiry_id);
-        $inquiry->name_file = $inquiry->id.'.pdf';
-        $inquiry->save();
-        $url = base_path().'/public/storage/'.$inquiry_id.'/';
+        $name_file = $inquiry->id.'.pdf';
+        
+        $url = base_path().'\public\storage/'.$inquiry_id.'/';
         if (!file_exists($url)) {
             Storage::makeDirectory('public/'. $inquiry_id);
         } 
         
         $pdf = FacadePdf::loadView('show2', compact ('patient', 'inquiry', 'specialty', 'doctor', 'vital', 'recipes'));     
-        $pdf->save(storage_path('app/public/'.$inquiry_id.'/').$inquiry->name_file);
+        $pdf->save(storage_path('app/public/'.$inquiry_id.'/') . $name_file);
+        $inquiry->url =  'storage/'.$inquiry_id.'/'.$name_file;
+        $inquiry->name_file = $name_file;
+        $inquiry->save();
         // $pdf = FacadePdf::loadView('inquiry.show2', compact ('patient', 'inquiry', 'specialty', 'doctor', 'vital', 'recipes'))->output();     
         // Storage::disk('public')->put('mi-archivo.pdf', $pdf);
          
@@ -54,25 +57,28 @@ class ArchiveController extends Controller
 
     public function imprimir($inquiry_id)
     {        
-        $inquiry = Inquiry::find($inquiry_id);
-        $specialty = Specialty::find($inquiry->specialty_id);
-        $doctor =  User::find($inquiry->doctor_id);
-        $patient = collect( User::where('id',$inquiry->patient_id)->first());
-        $patient = $patient->merge(['edad' =>  (Carbon::parse($patient['fecha'])->age)]);
-        $vital = Vital::where('inquiry_id', $inquiry_id)->first();
-        $recipes = Recipe::all()->where('inquiry_id', $inquiry_id);
+        // $inquiry = Inquiry::find($inquiry_id);
+        // $specialty = Specialty::find($inquiry->specialty_id);
+        // $doctor =  User::find($inquiry->doctor_id);
+        // $patient = collect( User::where('id',$inquiry->patient_id)->first());
+        // $patient = $patient->merge(['edad' =>  (Carbon::parse($patient['fecha'])->age)]);
+        // $vital = Vital::where('inquiry_id', $inquiry_id)->first();
+        // $recipes = Recipe::all()->where('inquiry_id', $inquiry_id);
 
-        $pdf = FacadePdf::loadView('show2', compact ('patient', 'inquiry', 'specialty', 'doctor', 'vital', 'recipes'));     
-        return  $pdf->download($patient['nombre'].'.pdf');              
+        // $pdf = FacadePdf::loadView('show2', compact ('patient', 'inquiry', 'specialty', 'doctor', 'vital', 'recipes'));     
+        // return  $pdf->download($patient['nombre'].'.pdf');              
     }
 
     public function show($inquiry_id)
     {        
+        
         $inquiry = Inquiry::find($inquiry_id);
-        if ($inquiry->name_file != "") {
-            return redirect('/storage/' . $inquiry->id . '/' . $inquiry->name_file);
-        } else{
+        // return $inquiry->url;
+        // $url = $inquiry->url. $inquiry->name_file;
+        if (file_exists($inquiry->url)) {
+            return view('archive.show', compact('inquiry'));
+        } else {
             abort(403);
-        }      
+        }
     }
 }
