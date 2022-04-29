@@ -11,7 +11,7 @@ class Inquiry extends Model
     use HasFactory;
     const F = 'Finalizado';
     const P = 'Pendiente';
-    protected $fillable = ['descripcion', 'fecha', 'patient_id', 'doctor_id', 'specialty_id'];
+    protected $fillable = ['descripcion', 'fecha', 'patient_id', 'doctor_id', 'specialty_id',  'name_file'];
     //relacion de uno a muchos inversa
     public function doctorSpecialty()
     {

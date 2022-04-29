@@ -22,6 +22,7 @@ class CreateInquiriesTable extends Migration
             $table->string('descripcion')->nullable();
             $table->enum('tipo', [Inquiry::P, Inquiry::F ])->default(Inquiry::P);
             $table->date('fecha')->nullable();
+            $table->text('name_file')->nullable();
             
             $table->foreign(['doctor_id','specialty_id'])->references(['doctor_id','specialty_id'])->on('doctor_specialty')->onDelete('cascade'); 
             $table->foreign('patient_id')->references('id')->on('patients')->onDelete('cascade');

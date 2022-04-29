@@ -3,11 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    {{-- <div class="card"> --}}
-    <div class="card-body">
-        <h1>Detalles</h1>
-    </div>
-    {{-- </div> --}}
+    <div></div>
 @stop
 
 @section('content')
@@ -119,12 +115,16 @@
             </div>
             <div class="col-sm-1">
                 {{-- @if (!$vital) --}}
-                <button class="btn btn-danger btn-sm" type="submit">Registrar</button>
+                <button class="btn btn-info btn-sm" type="submit">Guardar</button>
                 {{-- @endif --}}
             </div>
 
             <div class="col-sm-1">
                 <a href="{{ route('inquiries.index') }}" class="btn btn-warning text-white btn-sm">cancelar</a>
+            </div>
+            <div class="col-sm-1">
+                <a  class="btn btn-primary btn-sm" href="{{route('patients.show', $patient['id'])}}">Historial</a>
+
             </div>
         </div>
     </form>

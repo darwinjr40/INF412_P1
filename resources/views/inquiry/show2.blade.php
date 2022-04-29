@@ -1,11 +1,12 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+{{-- @section('title', 'Dashboard') --}}
 
 @section('content_header')
     {{-- <div class="card"> --}}
     <div class="card-body">
         {{-- <h1>Detalles</h1> --}}
+        <a  class="btn btn-primary btn-sm" href="{{route('guardar', $inquiry->id)}}">Guardar</a>
     </div>
     {{-- </div> --}}
 @stop
@@ -14,8 +15,6 @@
 
     <div class="card">
         <div class="card-body">
-
-
 
             <div class="row justify-content-center border border-primary rounded-top">
 

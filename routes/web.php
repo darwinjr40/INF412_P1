@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArchiveController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\InquiryController;
@@ -51,6 +52,12 @@ Route::post('recipe/{inquery_id}', [RecipeController::class, 'store2'])->name('r
 Route::delete('recipe//{recipe_id}/{inquery_id}', [RecipeController::class, 'destroy2'])->name('recipes.destroy2');
 
 Route::get('stories', [HistoryController::class, 'index'])->name('stories.index');
+
+
+Route::get('guardar-pdf/{inquery_id}', [ArchiveController::class, 'guardar'])->name('guardar');
+Route::get('imprimir-pdf/{inquery_id}', [ArchiveController::class, 'imprimir'])->name('imprimir');
+Route::get('ver-pdf/{inquery_id}', [ArchiveController::class, 'show'])->name('show');
+
 
 
 
