@@ -27,11 +27,13 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>{{$inquiry->url}}</h1>
-    {{-- {{URL('')}} --}}
+    {{-- <h1>{{$inquiry->url}}</h1> --}}
+    {{-- {{URL('public/storage/1/1.pdf')}} --}}
     <iframe src="{{URL($inquiry->url)}}" frameborder="0" style="width: 100%; height: 100vh;  "></iframe>
-    {{-- <iframe src="{{URL('storage/2/2.pdf')}}" frameborder="0" style="width: 98%; height: 90vh;  "></iframe> --}}
-
+    {{-- el de abajo es linux --}}
+    {{-- <iframe src="{{URL('/public/'.$inquiry->url)}}" frameborder="0" style="width: 100%; height: 100vh;  "></iframe> --}}
+    
+    {{-- <iframe src="/storage/1/1.pdf" frameborder="0" style="width: 98%; height: 90vh;  "></iframe> --}}
     {{-- <img src="/storage/1/tigre.jpg" alt="imagen de un tigre" title="foto de tigre" width="500px"> --}}
 </body>
 </html>

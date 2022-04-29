@@ -14,18 +14,20 @@
     <div class="card" style="">
         <div class="card-body" style="">
 
-           
+            
 
             <p style="text-align: left;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span
                     style="font-size: 16px;">&nbsp;</span><span style="font-size: 22px;"><span
                         style="font-family: Arial, Helvetica, sans-serif;"><strong>TRATAMIENTO
                             MEDICO</strong></span></span></p>
-
+                            
+                           
                             <div class="row  align-items-center">
                                 <div class="col-1">
-                                    <img class="brand-image img-circle  " style="width: 80px"
-                                        src="https://w7.pngwing.com/pngs/981/736/png-transparent-logo-clinic-family-medicine-physician-family-walk-text-trademark-logo.png">
+                                    <img src="/logo.jpg"  class="brand-image img-circle  " width="80px">
+                                    {{-- <img src="/public/logo.jpg"  class="brand-image img-circle  " width="80px"> --}}
+
                                         <h3><strong> Clinica SantaCruz </strong></h3>
                                 </div>
                                 <div class="col-3  d-flex" style="padding-left: 2%">
