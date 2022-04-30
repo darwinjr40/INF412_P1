@@ -27,7 +27,7 @@
                         <th scope="col" width="15%">Especialidad</th>
                         <th scope="col" width="15%">fecha</th>
                         {{-- <th scope="col" width="10%">Estado</th> --}}
-                        <th scope="col" width="20%">Acciones</th>
+                        <th scope="col" width="15%">Acciones</th>
 
                     </tr>
                 </thead>
@@ -47,9 +47,9 @@
                                     @csrf
                                     @method('delete')
                                     <a class="btn btn-primary mb1 bg-green btn-sm" href="{{ route('inquiries.show2', $inquiry->id) }}">Detalle</a>
-                                    <a class="btn btn-secondary mb1 bg-black btn-sm" href="{{ route('show', $inquiry->id) }}">ver</a>
+                                    <a class="btn btn-secondary mb1 bg-navy btn-sm" href="{{ route('show', $inquiry->id) }}">ver</a>
                                     <a class="btn btn-primary btn-sm" href="{{ route('guardar', $inquiry->id) }}">save</a>
-                                    <a class="btn btn-primary mb1 bg-navy btn-sm" href="{{ route('imprimir', $inquiry->id) }}">print</a>
+                                    {{-- <a class="btn btn-primary mb1 bg-black btn-sm" href="{{ route('imprimir', $inquiry->id) }}">print</a> --}}
                                     
                                     {{-- <a class="btn btn-info btn-sm" href="{{route('persons.edit',$persona)}}">Editar</a> --}}
                                     <button class="btn btn-danger btn-sm"

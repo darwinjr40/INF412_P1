@@ -16,16 +16,16 @@ class InquirySeeder extends Seeder
     {
         Inquiry::create([
             'fecha'   => date('Y/m/d'),
-            'doctor_id' => 2,
-            'specialty_id' => 1, 
+            'doctor_id' => 4,
+            'specialty_id' => 7, 
             // 'doctorSpecialty_id' => 2,
             'patient_id' => 5, 
         ]);
 
         Inquiry::create([
             'fecha'   => date('Y/m/d'),
-            'doctor_id' => 3,
-            'specialty_id' => 1, 
+            'doctor_id' => 2,
+            'specialty_id' => 3, 
             // 'doctorSpecialty_id' => 3,
             'patient_id' => 5, 
 
@@ -63,8 +63,8 @@ class InquirySeeder extends Seeder
 
         Inquiry::create([
             'fecha'   => date('Y/m/d'),
-            'doctor_id' => 4,
-            'specialty_id' => 7, 
+            'doctor_id' => 2,
+            'specialty_id' => 2, 
             // 'doctorSpecialty_id' => 6,
 
             'patient_id' => 6, 

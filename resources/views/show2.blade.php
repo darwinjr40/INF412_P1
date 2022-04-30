@@ -25,7 +25,7 @@
                            
                             <div class="row  align-items-center">
                                 <div class="col-1">
-                                    <img src="/logo.jpg"  class="brand-image img-circle  " width="80px">
+                                    <img src="{{asset('logo.jpg')}}"  class="brand-image img-circle  " width="80px">
                                     {{-- <img src="/public/logo.jpg"  class="brand-image img-circle  " width="80px"> --}}
 
                                         <h3><strong> Clinica SantaCruz </strong></h3>
@@ -38,29 +38,28 @@
                         style="font-size: 18px; font-family: Arial, Helvetica, sans-serif;">Direccion:&nbsp;</span></strong><span
                     style="font-size: 18px; font-family: Arial, Helvetica, sans-serif;">Doble v&iacute;a <span
                         style="font-size: 18px; font-family: Arial, Helvetica, sans-serif;">a guardia entre 2do y</span>
-                    3er anillo &nbsp; &nbsp;<strong>Fecha&nbsp;</strong>27-04-2022</span></p>
+                    3er anillo &nbsp; &nbsp;<strong>Fecha&nbsp;</strong>{{date('d-m-Y', strtotime($patient['fecha']))}}</span></p>
             <p style="line-height: 1;"><span
                     style="font-size: 18px; font-family: Arial, Helvetica, sans-serif;"><strong>T</strong></span><span
                     style="font-size: 18px; font-family: Arial, Helvetica, sans-serif;"><strong>elefono:</strong>
                     72561823 &nbsp;<strong>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                         &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                        &nbsp; &nbsp; Nro orden :</strong> 1</span></p>
+                        &nbsp; &nbsp; Nro orden :</strong> {{$inquiry->id}}</span></p>
             <p style="line-height: 1;"><strong><span
                         style="font-size: 18px; font-family: Arial, Helvetica, sans-serif;">Santa Cruz -
                         Bolivia</span></strong></p> <br>
             <p><span style="font-size: 20px;"><strong><span style="font-family: Arial, Helvetica, sans-serif;">Datos del
                             paciente <hr></span></strong></span>
                     <span style="font-size: 18px; font-family: Arial, Helvetica, sans-serif;"><strong>Nombre:</strong>&nbsp;
-                    &nbsp; &nbsp;Maximo Hugo Ondarza<br> <strong>Fecha de &nbsp;Nacimiento</strong>: &nbsp;
-                    24-04-1990<br> <strong>Edad:</strong>&nbsp; &nbsp; &nbsp;32<br> <strong>Genero:</strong>&nbsp;
-                    &nbsp; &nbsp;M</span></p>
+                    &nbsp; &nbsp;{{ $patient['nombre'] }}<br> <strong>Fecha de &nbsp;Nacimiento</strong>: &nbsp;
+                    {{ date('d-m-Y', strtotime($patient['fecha'])) }}<br> <strong>Edad:</strong>&nbsp; &nbsp; &nbsp;{{$patient['edad'] }}<br> <strong>Genero:</strong>&nbsp;
+                    &nbsp; &nbsp;{{$patient['sexo']}}</span></p>
 
             <p></p>
-            <p><span style="font-size: 20px; font-family: Arial, Helvetica, sans-serif;"><strong>Datos del
-                        Medico <hr></strong></span><span
+            <p><span style="font-size: 20px; font-family: Arial, Helvetica, sans-serif;"><strong>Datos de la consulta <hr></strong></span><span
                     style="font-size: 18px; font-family: Arial, Helvetica, sans-serif;">
-                    <strong>Medico:</strong>&nbsp; &nbsp; Max Coimbra Herrera<br> <strong>Servicio:</strong>&nbsp;
-                    &nbsp;M&eacute;dicina Interna</span></p>
+                    <strong>Medico:</strong>&nbsp; &nbsp; {{ $doctor->nombre }}<br> <strong>Servicio:</strong>&nbsp;
+                    &nbsp;{{ $specialty->nombre }}</span></p>
             <p></p>
             
 
