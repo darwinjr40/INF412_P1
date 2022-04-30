@@ -25,8 +25,9 @@
                            
                             <div class="row  align-items-center">
                                 <div class="col-1">
-                                    <img src="{{asset('logo.jpg')}}"  class="brand-image img-circle  " width="80px">
-                                    {{-- <img src="/public/logo.jpg"  class="brand-image img-circle  " width="80px"> --}}
+                                    {{-- <img src="{{asset('logo.jpg')}}"  class="brand-image img-circle  " width="80px"> --}}
+                                    <img  src="https://w7.pngwing.com/pngs/981/736/png-transparent-logo-clinic-family-medicine-physician-family-walk-text-trademark-logo.png"
+                                    class="brand-image img-circle  " width="80px">
 
                                         <h3><strong> Clinica SantaCruz </strong></h3>
                                 </div>
