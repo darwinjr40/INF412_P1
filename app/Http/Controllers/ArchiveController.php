@@ -76,7 +76,6 @@ class ArchiveController extends Controller
         $inquiry->fecha_file = date('d-m-y H:i:s', time());
         $inquiry->save();
         // $pdf = FacadePdf::loadView('inquiry.show2', compact ('patient', 'inquiry', 'specialty', 'doctor', 'vital', 'recipes'))->output();     
-        // Storage::disk('public')->put('mi-archivo.pdf', $pdf);
          
         // return  $pdf->download('primerpdf.pdf');
         return redirect()->route('patients.show', $patient['id']);

@@ -20,7 +20,7 @@ class InquiryApiController extends Controller
                                 'p.nombre as patient_nombre',
                                 's.nombre as specialty_nombre'  
                              )
-        ->get());    
+        ->get());  
         return $consultas;
     }
 
