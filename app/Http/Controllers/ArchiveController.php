@@ -12,16 +12,86 @@ use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 use Barryvdh\DomPDF\PDF;
 use Carbon\Carbon;
+use Facade\FlareClient\Stacktrace\File;
+use Illuminate\Filesystem\Filesystem;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 
 class ArchiveController extends Controller
 {
 
 
+    
+    public function guardar($inquiry_id)
+    {
+        $inquiry = Inquiry::find($inquiry_id);
+        $specialty = Specialty::find($inquiry->specialty_id);
+        $doctor =  User::find($inquiry->doctor_id);
+        $patient = collect( User::where('id',$inquiry->patient_id)->first());
+        $patient = $patient->merge(['edad' =>  (Carbon::parse($patient['fecha'])->age)]);
+        $vital = Vital::where('inquiry_id', $inquiry_id)->first();
+        $recipes = Recipe::all()->where('inquiry_id', $inquiry_id);
+        $name_file = $inquiry->id . '.pdf';
+        //guardamos la url del archivo 
+        $url = public_path().'/storage/'.$inquiry_id;
+        if (!file_exists($url))    Storage::makeDirectory('public/'. $inquiry_id);
+        // generar un pdf atravez de una vista
+        $pathName = $url.'/'. $name_file;
+        $pdf = FacadePdf::loadView('show2', compact ('patient', 'inquiry', 'specialty', 'doctor', 'vital', 'recipes'));     
+        $pdf->save($pathName);
+        $file = $this->pathToUploadedFile($pathName);
+        //crea el archiva en aws
+        $pathNube = Storage::disk('s3')->put($inquiry_id, $file, 'public');
+        $inquiry->path =  Storage::disk('s3')->url($pathNube);
+        $inquiry->pathLocal =  'storage/'.$inquiry_id.'/'.$name_file;
+        $inquiry->name_file = $name_file;
+        $inquiry->fecha_file = date('d-m-y H:i:s', time());
+        $inquiry->save();
+        return redirect()->route('patients.show', $patient['id']);
+    }
+
+    
+    public function show($inquiry_id)
+    {                
+        $inquiry = Inquiry::find($inquiry_id);
+        // return $inquiry->url;
+        // $url = $inquiry->url. $inquiry->name_file;
+        if ($inquiry->path) {
+            return view('archive.show', compact('inquiry'));
+        } else {
+            abort(403);
+        }
+    }
+
+
+    public function pathToUploadedFile( $path, $test = true ) {
+        $filesystem = new Filesystem;
+        
+        $name = $filesystem->name( $path );
+        $extension = $filesystem->extension( $path );
+        $originalName = $name . '.' . $extension;
+        $mimeType = $filesystem->mimeType( $path );
+        $error = null;    
+        return new UploadedFile( $path, $originalName, $mimeType, $error, $test );
+    }
+    public function imprimir($inquiry_id)
+    {        
+        // $inquiry = Inquiry::find($inquiry_id);
+        // $specialty = Specialty::find($inquiry->specialty_id);
+        // $doctor =  User::find($inquiry->doctor_id);
+        // $patient = collect( User::where('id',$inquiry->patient_id)->first());
+        // $patient = $patient->merge(['edad' =>  (Carbon::parse($patient['fecha'])->age)]);
+        // $vital = Vital::where('inquiry_id', $inquiry_id)->first();
+        // $recipes = Recipe::all()->where('inquiry_id', $inquiry_id);
+        
+        // $pdf = FacadePdf::loadView('show2', compact ('patient', 'inquiry', 'specialty', 'doctor', 'vital', 'recipes'));     
+        // return  $pdf->download($patient['nombre'].'.pdf');              
+    }
+    
     // public function guardar($inquiry_id)
     // {
-    //     $inquiry = Inquiry::find($inquiry_id);
-    //     $specialty = Specialty::find($inquiry->specialty_id);
+        //     $inquiry = Inquiry::find($inquiry_id);
+        //     $specialty = Specialty::find($inquiry->specialty_id);
     //     $doctor =  User::find($inquiry->doctor_id);
     //     $patient = collect( User::where('id',$inquiry->patient_id)->first());
     //     $patient = $patient->merge(['edad' =>  (Carbon::parse($patient['fecha'])->age)]);
@@ -54,8 +124,8 @@ class ArchiveController extends Controller
         
     //     return "hola";
     // }
-
-    public function guardar($inquiry_id)
+    
+    public function guardar1($inquiry_id)
     {
         $inquiry = Inquiry::find($inquiry_id);
         $specialty = Specialty::find($inquiry->specialty_id);
@@ -65,7 +135,7 @@ class ArchiveController extends Controller
         $vital = Vital::where('inquiry_id', $inquiry_id)->first();
         $recipes = Recipe::all()->where('inquiry_id', $inquiry_id);
         $name_file = $inquiry->id.'.pdf';
-        
+        //guardamos la url del archivo
         $url = public_path().'/storage/'.$inquiry_id;
         if (!file_exists($url))    Storage::makeDirectory('public/'. $inquiry_id);
         // return $url;
@@ -89,31 +159,5 @@ class ArchiveController extends Controller
         
         return "hola";
     }
-    public function imprimir($inquiry_id)
-    {        
-        // $inquiry = Inquiry::find($inquiry_id);
-        // $specialty = Specialty::find($inquiry->specialty_id);
-        // $doctor =  User::find($inquiry->doctor_id);
-        // $patient = collect( User::where('id',$inquiry->patient_id)->first());
-        // $patient = $patient->merge(['edad' =>  (Carbon::parse($patient['fecha'])->age)]);
-        // $vital = Vital::where('inquiry_id', $inquiry_id)->first();
-        // $recipes = Recipe::all()->where('inquiry_id', $inquiry_id);
-
-        // $pdf = FacadePdf::loadView('show2', compact ('patient', 'inquiry', 'specialty', 'doctor', 'vital', 'recipes'));     
-        // return  $pdf->download($patient['nombre'].'.pdf');              
-    }
-
-    public function show($inquiry_id)
-    {                
-        $inquiry = Inquiry::find($inquiry_id);
-        // return $inquiry->url;
-        // $url = $inquiry->url. $inquiry->name_file;
-        if ($inquiry->path) {
-            return view('archive.show', compact('inquiry'));
-        } else {
-            abort(403);
-        }
-    }
-
     
 }

@@ -23,6 +23,7 @@ class CreateInquiriesTable extends Migration
             $table->enum('tipo', [Inquiry::P, Inquiry::F ])->default(Inquiry::P);
             $table->date('fecha')->nullable();
             $table->text('path')->nullable();
+            $table->text('pathLocal')->nullable();
             $table->text('name_file')->nullable();
             $table->dateTime('fecha_file')->nullable();
 
