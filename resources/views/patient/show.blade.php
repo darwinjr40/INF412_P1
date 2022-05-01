@@ -47,7 +47,9 @@
                                     @csrf
                                     @method('delete')
                                     <a class="btn btn-primary mb1 bg-green btn-sm" href="{{ route('inquiries.show2', $inquiry->id) }}">Detalle</a>
-                                    <a class="btn btn-secondary mb1 bg-navy btn-sm" href="{{ route('show', $inquiry->id) }}">ver</a>
+                                    {{-- <a class="btn btn-secondary mb1 bg-navy btn-sm" href="{{ route('show', $inquiry->id) }}">ver</a> --}}
+                                    <a class="btn btn-secondary mb1 bg-navy btn-sm" href="{{ ($inquiry->path) ? $inquiry->path : '#' }}">ver</a>
+                                    
                                     <a class="btn btn-primary btn-sm" href="{{ route('guardar', $inquiry->id) }}">save</a>
                                     {{-- <a class="btn btn-primary mb1 bg-black btn-sm" href="{{ route('imprimir', $inquiry->id) }}">print</a> --}}
                                     

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Inquiry;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class InquiryApiController extends Controller
 {
@@ -20,15 +21,18 @@ class InquiryApiController extends Controller
                                 'p.nombre as patient_nombre',
                                 's.nombre as specialty_nombre'  
                              )
-        ->get());  
+                             ->orderBy('id', 'desc')->get());  
         return $consultas;
     }
 
     public function getRecipe($inquiry_id)
     {
-        $inquiries = collect(Inquiry::where('id', $inquiry_id)->get());        
-        // $inquiries = collect(Inquiry::all());        
-        return $inquiries;
+        // $inquiries = collect(Inquiry::where('id', $inquiry_id)->get());        
+        $inquiries = DB::table('inquiries')->where('id', $inquiry_id)->orderBy('created_at', 'desc')->get();
+        $n = sizeof($inquiries);
+        $i = 0;
+        while (($i < $n) &&($inquiries[$i]->path))  { $i++; }
+        return ($i < $n) ? (collect()) : ($inquiries);
     }
 
 

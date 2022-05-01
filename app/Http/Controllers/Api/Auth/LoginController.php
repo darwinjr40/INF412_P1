@@ -12,7 +12,7 @@ class LoginController extends Controller
 {
     
     public function login(Request $request){
-        $e = ['Correo electronico no encontrado.','Contraseña incorrecta.'];
+        $e = ['Correo electronico no encontrado.','ingrese una cuenta valida','Contraseña incorrecta.'];
         $request->validate([
             'email' => 'required | string ',
             'password' => 'required | string | min:4'
@@ -26,10 +26,12 @@ class LoginController extends Controller
         }
 
         $user = User::where('email', $request->email)->firstOrFail();
-        if(Hash::check($request->password, $user->password)){
-            return $user;
-        }else{
+        if ($user->tipo != User::PACIENTE){
             return response()->json(['message' => $e[1]], 404);
+        } else if(!Hash::check($request->password, $user->password)){
+            return response()->json(['message' => $e[2]], 404);
+        }else{
+            return $user;
         }
     }
 }

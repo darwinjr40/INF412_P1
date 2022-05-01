@@ -31,6 +31,8 @@
     {{-- {{URL('public/storage/1/1.pdf')}} --}}
     {{-- <iframe src="{{URL($inquiry->url)}}" frameborder="0" style="width: 100%; height: 100vh;  "></iframe> --}}
     <iframe src="{{asset($inquiry->pathLocal)}}" frameborder="0" style="width: 100%; height: 100vh;  "></iframe>
+    {{-- <iframe src="{{$inquiry->path}}" frameborder="0" style="width: 100%; height: 100vh;  "></iframe> --}}
+    
 
     {{-- el de abajo es linux --}}
     {{-- <iframe src="{{URL('/public/'.$inquiry->url)}}" frameborder="0" style="width: 100%; height: 100vh;  "></iframe> --}}
