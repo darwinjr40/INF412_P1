@@ -71,8 +71,9 @@ class ArchiveController extends Controller
         // return $url;
         $pdf = FacadePdf::loadView('show2', compact ('patient', 'inquiry', 'specialty', 'doctor', 'vital', 'recipes'));     
         $pdf->save($url.'/'. $name_file);
-        $inquiry->url =  'storage/'.$inquiry_id.'/'.$name_file;
+        $inquiry->path =  'storage/'.$inquiry_id.'/'.$name_file;
         $inquiry->name_file = $name_file;
+        $inquiry->fecha_file = date('d-m-y H:i:s', time());
         $inquiry->save();
         // $pdf = FacadePdf::loadView('inquiry.show2', compact ('patient', 'inquiry', 'specialty', 'doctor', 'vital', 'recipes'))->output();     
         // Storage::disk('public')->put('mi-archivo.pdf', $pdf);
@@ -108,10 +109,12 @@ class ArchiveController extends Controller
         $inquiry = Inquiry::find($inquiry_id);
         // return $inquiry->url;
         // $url = $inquiry->url. $inquiry->name_file;
-        if ($inquiry->url) {
+        if ($inquiry->path) {
             return view('archive.show', compact('inquiry'));
         } else {
             abort(403);
         }
     }
+
+    
 }

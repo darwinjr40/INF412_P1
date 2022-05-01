@@ -16,6 +16,13 @@ Route::post('login', [LoginController::class, 'login']);
 
 
 Route::get('inquiries/{patient_id}', [InquiryApiController::class, 'getConsultas']);
+
+Route::get('getRecipe/{inquiry_id}', [InquiryApiController::class, 'getRecipe']);
+
+Route::get('getUrl/{inquiry_id}', [InquiryApiController::class, 'getUrl']);
+
+
+
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
 // });

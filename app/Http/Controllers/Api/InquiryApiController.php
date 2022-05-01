@@ -23,4 +23,18 @@ class InquiryApiController extends Controller
         ->get());    
         return $consultas;
     }
+
+    public function getRecipe($inquiry_id)
+    {
+        $inquiries = collect(Inquiry::where('id', $inquiry_id)->get());        
+        // $inquiries = collect(Inquiry::all());        
+        return $inquiries;
+    }
+
+
+    public function getUrl($inquiry_id)
+    {
+        $inquiry = Inquiry::find($inquiry_id);
+        return asset($inquiry->path);
+    }
 }
