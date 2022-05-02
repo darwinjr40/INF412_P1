@@ -305,17 +305,17 @@ return [
         ['header' => 'ADMINISTRACION'],
 
         [
+            'text' => 'Doctores',
+            'route'  => 'doctors.index',
+            'icon' => 'fas fa-fw fa-user',
+        ],
+        [
             'text' => 'pacientes',
             'url'  => 'patients',
             'icon' => 'far fa-address-card',
             // 'can' => 'clientes.index'
         ],
 
-        [
-            'text' => 'Personal',
-            'url'  => 'personales',
-            'icon' => 'fas fa-fw fa-user',
-        ],
         //----------------------------------------------------------------------------------------
 
         ['header' => 'CITAS'],
