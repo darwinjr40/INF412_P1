@@ -8,11 +8,14 @@
 
 @section('content')
 
+@can('patients.create', $post)
+    
 <div class="card">
   <div class="card-header">
       <a class="btn btn-primary btb-sm" href="{{route('patients.create')}}"> Registrar Paciente</a>
   </div>
 </div>
+@endcan
 
 <div class="card">
     <div class="card-body">

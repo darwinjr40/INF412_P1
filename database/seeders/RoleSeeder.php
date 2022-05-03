@@ -52,12 +52,12 @@ class RoleSeeder extends Seeder
         Permission::create([
             'name' => 'patients.create',
             'descripcion' => 'Crear pacientes'
-        ])->syncRoles($a, $b);
+        ])->syncRoles($a);
 
         Permission::create([
             'name' => 'patients.edit',
             'descripcion' => 'Editar pacientes'
-        ])->syncRoles($a, $b);
+        ])->syncRoles($a);
 
         Permission::create([
             'name' => 'patients.show',
