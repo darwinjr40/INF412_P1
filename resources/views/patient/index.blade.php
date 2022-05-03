@@ -8,7 +8,7 @@
 
 @section('content')
 
-@can('patients.create', $post)
+@can('patients.create')
     
 <div class="card">
   <div class="card-header">
