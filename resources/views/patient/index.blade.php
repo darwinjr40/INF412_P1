@@ -83,10 +83,23 @@
 
 <script>
     $(document).ready(function() {
-     $('#patients').DataTable({
-       responsive: true,
-       autoWidth: false
-     });
-    } );
+            $('#patients').DataTable({
+                responsive: true,
+                autoWidth: false,
+                "order": [[ 0, "desc" ]],
+                "language": {
+                    "lengthMenu": "Mostrar _MENU_  registros por pagina",
+                    "zeroRecords": "Nada encontrado - disculpa",
+                    "info": "Mostrando la pagina _PAGE_ de _PAGES_",
+                    "infoEmpty": "No records available",
+                    "infoFiltered": "(filtrado de _MAX_ regsitros totales)",
+                    "search" : "Buscar:",
+                    "paginate" : {
+                        "next" : "Siguiente",
+                        "previous" : "Anterior"
+                     }
+                }
+            });
+        });
 </script>
 @stop

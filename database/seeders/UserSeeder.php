@@ -22,7 +22,7 @@ class UserSeeder extends Seeder
             'email'=> 'admin@gmail.com',
             'password'=> Hash::make('0000'),
             'tipo'=> User::ADMIN,
-        ]);
+        ])->assignRole('admin');
 
         User::create([
             'name'=> 'max',
@@ -32,7 +32,7 @@ class UserSeeder extends Seeder
             'nombre'=> 'Max Coimbra Herrera',
             'sexo'=> User::HOMBRE,
             'fecha'=> '1974-07-02',
-        ]);
+        ])->assignRole('doctor');
 
         User::create([
             'name'=> 'maite',
@@ -42,7 +42,7 @@ class UserSeeder extends Seeder
             'nombre'=> 'Maite Herrera Lima',
             'sexo'=> User::MUJER,
             'fecha'=> '1970-07-02',
-        ]);
+        ])->assignRole('doctor');
 
         User::create([
             'name'=> 'susibeth',
@@ -55,7 +55,7 @@ class UserSeeder extends Seeder
             'fecha'=> date('d-m-y',strtotime('1980-05-10')),
              // 'hora' => date('H:i:s'),
             // 'fecha' => date('Y/m/d'),
-        ]);
+        ])->assignRole('doctor');
 
 
         //pacientes
@@ -67,7 +67,7 @@ class UserSeeder extends Seeder
             'nombre'=> 'Maximo Hugo Ondarza',
             'sexo'=> User::HOMBRE,
             'fecha'=> '1990-04-24',
-        ]);
+        ])->assignRole('paciente');
 
         User::create([
             'name'=> 'Emi',
@@ -77,7 +77,7 @@ class UserSeeder extends Seeder
             'nombre'=> 'Emiliana Ortiz Perez',
             'sexo'=> Doctor::MUJER,
             'fecha'=> '2000-02-20',
-        ]);
+        ])->assignRole('paciente');
 
         User::create([
             'name'=> 'Emerson',
@@ -87,6 +87,6 @@ class UserSeeder extends Seeder
             'nombre'=> 'Emerson Boris Arteaga',
             'sexo'=> Doctor::HOMBRE,
             'fecha'=> '2002-08-29',
-        ]);
+        ])->assignRole('paciente');
     }
 }

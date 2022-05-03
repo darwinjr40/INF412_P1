@@ -308,49 +308,42 @@ return [
             'text' => 'Doctores',
             'route'  => 'doctors.index',
             'icon' => 'fas fa-fw fa-user',
+            'can' => 'doctors.index'
         ],
         [
             'text' => 'pacientes',
             'url'  => 'patients',
             'icon' => 'far fa-address-card',
-            // 'can' => 'clientes.index'
+            'can' => 'patients.index'
         ],
 
         //----------------------------------------------------------------------------------------
 
-        ['header' => 'CITAS'],
+        ['header' => 'CITAS', 'can' => 'inquiries.index'],
         [
             'text'       => 'Citas',
             'icon_color' => 'red',
             'icon' => 'fas fa-user-plus',
             'url'        => 'inquiries',
+            'can' => 'inquiries.index'
         ],
         //----------------------------------------------------------------------------------------
 
-        ['header' => 'CONFIGURACION'],
+        ['header' => 'CONFIGURACION', 'can' => 'users.index'],
 
         [
             'text' => 'Usuarios',
-             'url'  => '#',
+            'route'  => 'users.index',
             'icon' => 'fas fa-user-circle',
-            // 'can' => 'users.index'
+            'can' => 'users.index'
         ],
 
         [
             'text' => 'Lista de Roles',
-            'url'  => '#',//'admin.roles.index',
+            'route'  => 'roles.index',
             'icon' => 'fas fa-users-cog fa-fw',
-            // 'can' => 'roles.index'
+            'can' => 'users.index'
         ],
-
-        [
-            'text' => 'Bitacora',
-            'url'  => '#',
-            'icon' => 'fas fa-user-plus',
-            // 'can' => 'bitacora.index'
-        ],
-
-
 
         //----------------------------------------------------------------------------------------
         

@@ -93,7 +93,10 @@ class InquiryController extends Controller
         $patient = collect( User::where('id',$inquiry->patient_id)->first());
         $patient = $patient->merge(['edad' =>  (Carbon::parse($patient['fecha'])->age)]);
         $vital = Vital::where('inquiry_id', $inquiry_id)->first();
+        // return $inquiry_id;
+        // return $vital;
         $recipes = Recipe::all()->where('inquiry_id', $inquiry_id);
+
        return  view('show2', compact('patient', 'inquiry', 'specialty', 'doctor', 'vital', 'recipes'));
     }
 

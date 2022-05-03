@@ -29,8 +29,8 @@ class InquiryApiController extends Controller
     {
         // $inquiries = collect(Inquiry::where('id', $inquiry_id)->get());        
         $inquiries = DB::table('inquiries')->where('id', $inquiry_id)->orderBy('created_at', 'desc')->get();
-        $n = sizeof($inquiries);
         $i = 0;
+        $n = sizeof($inquiries);
         while (($i < $n) &&($inquiries[$i]->path))  { $i++; }
         return ($i < $n) ? (collect()) : ($inquiries);
     }

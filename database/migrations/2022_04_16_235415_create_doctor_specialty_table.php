@@ -22,8 +22,8 @@ class CreateDoctorSpecialtyTable extends Migration
             $table->unsignedBigInteger('doctor_id');
             $table->unsignedBigInteger('specialty_id');
             $table->date('fecha')->nullable();
-            $table->foreign('doctor_id')->references('id')->on('doctors');
-            $table->foreign('specialty_id')->references('id')->on('specialties');
+            $table->foreign('doctor_id')->references('id')->on('doctors')->onDelete('cascade');
+            $table->foreign('specialty_id')->references('id')->on('specialties')->onDelete('cascade');
             $table->primary(['doctor_id','specialty_id']);
             $table->timestamps();
             // $table->primary(['doctor_id', 'specialty_id']);

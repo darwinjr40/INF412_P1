@@ -60,7 +60,7 @@ class DoctorController extends Controller
              'password' => Hash::make($request->password),
               'tipo' => User::DOCTOR
         ]);
-        $user = User::create($request->all());
+        $user = User::create($request->all())->assignRole('doctor');
         Doctor::create(['id' => $user->id]);
         return redirect()->route('doctors.index');  
     }

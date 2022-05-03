@@ -6,6 +6,8 @@ use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\InquiryController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\RecipeController;
+use App\Http\Controllers\RolConttroller;
+use App\Http\Controllers\UserConttroller;
 use App\Http\Controllers\VitalController;
 use App\Models\Doctor;
 use Illuminate\Support\Facades\Auth;
@@ -48,7 +50,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('guardar-pdf/{inquery_id}', [ArchiveController::class, 'guardar'])->name('guardar');
     Route::get('imprimir-pdf/{inquery_id}', [ArchiveController::class, 'imprimir'])->name('imprimir');
     Route::get('ver-pdf/{inquery_id}', [ArchiveController::class, 'show'])->name('show');
-    
+    Route::resource('users',   UserConttroller::class);
+    Route::resource('roles',   RolConttroller::class);
 });
 
 

@@ -8,11 +8,7 @@
 
 @section('content')
 
-<div class="card">
-  <div class="card-header">
-      <a class="btn btn-primary btb-sm" href="{{route('doctors.create')}}"> Registrar Doctor</a>
-  </div>
-</div>
+
 
 <div class="card">
     <div class="card-body">
@@ -30,18 +26,18 @@
         </thead>
         
         <tbody>
-            @foreach ($doctors as $doctor)
+            @foreach ($users as $user)
             <tr>
-              <td>{{$doctor->id}}</td>
-              <td>{{$doctor->nombre}}</td>
-              <td>{{$doctor->sexo}}</td>
-              <td>{{date('d-m-Y',strtotime($doctor->fecha))}}</td>
+              <td>{{$user->id}}</td>
+              <td>{{$user->nombre}}</td>
+              <td>{{$user->sexo}}</td>
+              <td>{{date('d-m-Y',strtotime($user->fecha))}}</td>
 
-              <td>{{$doctor->name}}</td>
-              <td>{{$doctor->email}}</td>
+              <td>{{$user->name}}</td>
+              <td>{{$user->email}}</td>
 
               <td >
-                <form  action="{{route('doctors.destroy',$doctor)}}" method="post">
+                <form  action="{{route('users.destroy',$user)}}" method="post">
                   @csrf
                   @method('delete')
                     {{-- <a  class="btn btn-primary btn-sm" href="{{route('persons.show',$persona)}}">Ver</a>   --}}

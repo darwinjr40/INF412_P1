@@ -8,11 +8,7 @@
 
 @section('content')
 
-<div class="card">
-  <div class="card-header">
-      <a class="btn btn-primary btb-sm" href="{{route('doctors.create')}}"> Registrar Doctor</a>
-  </div>
-</div>
+
 
 <div class="card">
     <div class="card-body">
@@ -20,28 +16,20 @@
         <thead>
           <tr>
             <th scope="col" width="5%">Id</th>
-            <th scope="col" width= "15%">Nombre completo</th>
-            <th scope="col" width= "5%">Genero </th>
-            <th scope="col" width= "15%">Fecha de Nacimiento</th>
-            <th scope="col" width= "15%">Usuario</th>
-            <th scope="col" width= "15%">Email</th>
-            <th scope="col" width="5%">Acciones</th>
+            <th scope="col" width= "15%">Nombre</th>
+            <th scope="col" width= "5%">accion</th>
+
           </tr>
         </thead>
         
         <tbody>
-            @foreach ($doctors as $doctor)
+            @foreach ($roles as $rol)
             <tr>
-              <td>{{$doctor->id}}</td>
-              <td>{{$doctor->nombre}}</td>
-              <td>{{$doctor->sexo}}</td>
-              <td>{{date('d-m-Y',strtotime($doctor->fecha))}}</td>
-
-              <td>{{$doctor->name}}</td>
-              <td>{{$doctor->email}}</td>
+              <td>{{$rol->id}}</td>
+              <td>{{$rol->name}}</td>
 
               <td >
-                <form  action="{{route('doctors.destroy',$doctor)}}" method="post">
+                <form  action="{{route('roles.destroy',$rol)}}" method="post">
                   @csrf
                   @method('delete')
                     {{-- <a  class="btn btn-primary btn-sm" href="{{route('persons.show',$persona)}}">Ver</a>   --}}

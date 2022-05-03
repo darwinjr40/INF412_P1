@@ -47,7 +47,7 @@ class ArchiveController extends Controller
         $inquiry->name_file = $name_file;
         $inquiry->fecha_file = date('d-m-y H:i:s', time());
         $inquiry->save();
-        return redirect()->route('patients.show', $patient['id']);
+        return redirect()->route('patients.show', $patient['id'])->with('info', 'Guardado Exitosamente');
     }
 
     

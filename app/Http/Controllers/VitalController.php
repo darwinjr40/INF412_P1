@@ -29,9 +29,6 @@ class VitalController extends Controller
             $request->merge(['inquiry_id' => $inquiry_id]);
             Vital::create($request->all());
         }
-         
-        
-        // return "todo bien2";
         return redirect()->route('inquiries.show', $inquiry_id);
     }
 
