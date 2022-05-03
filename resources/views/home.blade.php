@@ -58,7 +58,7 @@
 				</a>
 		<h4> Productos</h4>
 		</div> --}}
-		
+		@can('patients.index')
 		<div class= "iconos">
 			<a href="{{route('patients.index')}}">
 				<i class="fas fa-user-tie fa-7x" style="color:#364542" ></i> 
@@ -66,7 +66,7 @@
 		<h4> Pacientes</h4>
 		
 		</div>
-	
+		@endcan
 	</div>
 	
 	

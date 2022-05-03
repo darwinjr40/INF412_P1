@@ -38,7 +38,7 @@ class PatientController extends Controller
             'email' => ' required | unique:users',
             'password' => ' required'
         ]);
-        $request->merge([ 'password' => Hash::make($request->password), 'tipo' => User::PACIENTE]);
+        $request->merge([ 'password' => Hash::make($request->password), 'tipo' => User::PACIENTE, 'fecha' => '1970-07-02']);
         $user = User::create($request->all())->assignRole('paciente');
         Patient::create(['id' => $user->id]);
         return redirect()->route('patients.index');
