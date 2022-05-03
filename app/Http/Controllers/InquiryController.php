@@ -20,7 +20,22 @@ class InquiryController extends Controller
      */
     public function index()
     {
-        $inquiries = inquiry::join('users as p', 'inquiries.patient_id', '=', 'p.id')
+        $user = auth()->user();
+        // return $user;
+        if ($user->tipo == User::DOCTOR) {
+            // return "hola";
+            $inquiries = inquiry::join('users as p', 'inquiries.patient_id', '=', 'p.id')
+                            ->join('users as d', 'inquiries.doctor_id', '=', 'd.id')
+                            ->join('specialties as s', 'inquiries.specialty_id', '=', 's.id')
+                            ->where('inquiries.doctor_id', $user->id)
+                            ->select(
+                                'inquiries.*', 'd.nombre as doctor_nombre', 
+                                'p.nombre as patient_nombre',
+                                's.nombre as specialty_nombre'  
+                             )
+        ->get();  
+        } else {
+            $inquiries = inquiry::join('users as p', 'inquiries.patient_id', '=', 'p.id')
                             ->join('users as d', 'inquiries.doctor_id', '=', 'd.id')
                             ->join('specialties as s', 'inquiries.specialty_id', '=', 's.id')
                             ->select(
@@ -28,7 +43,10 @@ class InquiryController extends Controller
                                 'p.nombre as patient_nombre',
                                 's.nombre as specialty_nombre'  
                              )
-        ->get();    
+        ->get();  
+        }
+        
+          
         // return inquiry::all();
         return view('inquiry.index', compact('inquiries'));
     }

@@ -20,9 +20,11 @@
 </head>
 <body>
 	<!--cliente, proveedor, productos¿,personal-->
+	
 	<div class= "container">
 		<div class="cabecera"style="display: flex">
-			<i class="fas fa-car-side fa-5x" style="color:#F7F7F7" > </i>
+			{{-- <i class="fas fa-car-side fa-5x" style="color:#F7F7F7" > </i> --}}
+			
 			<h1 class= "title"> Sistema de gestión de historias clínicas </h1>
 		</div>
 	</div>
@@ -33,12 +35,15 @@
 
 	<div class= "menu" >
 	
+		@can('doctors.index')
+			
 		<div class= "iconos">
 			<a href="{{route('doctors.index')}}">
 			<i class="fas fa-user-alt fa-7x" style="color:#364542" ></i> 
 			</a>
 			<h4>Doctores</h4>
 		</div>
+		@endcan
 		
 		{{-- <div class= "iconos">
 			<a href="{{route('doctors.index')}}">

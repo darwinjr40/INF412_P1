@@ -21,6 +21,7 @@
             <th scope="col" width= "15%">Fecha de Nacimiento</th>
             <th scope="col" width= "15%">Usuario</th>
             <th scope="col" width= "15%">Email</th>
+            <th scope="col" width= "15%">Tipo</th>
             <th scope="col" width="5%">Acciones</th>
           </tr>
         </thead>
@@ -35,6 +36,8 @@
 
               <td>{{$user->name}}</td>
               <td>{{$user->email}}</td>
+              <td>{{$user->tipo}}</td>
+
 
               <td >
                 <form  action="{{route('users.destroy',$user)}}" method="post">

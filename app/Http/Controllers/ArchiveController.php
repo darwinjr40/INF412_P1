@@ -25,6 +25,10 @@ class ArchiveController extends Controller
     public function guardar($inquiry_id)
     {
         $inquiry = Inquiry::find($inquiry_id);
+        if ($inquiry->tipo == Inquiry::P) {
+            $inquiry->tipo = Inquiry::F;
+            $inquiry->save();
+        }
         $specialty = Specialty::find($inquiry->specialty_id);
         $doctor =  User::find($inquiry->doctor_id);
         $patient = collect( User::where('id',$inquiry->patient_id)->first());
