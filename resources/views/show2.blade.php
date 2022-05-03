@@ -71,15 +71,15 @@
                     </span>
                 </strong>
             <p style="font-size: 18px; font-family: Arial, Helvetica, sans-serif;">
-                <strong>Presion arterial:</strong>  {{ $vital ? $vital->presion : "" }}  <br>
+                <strong>Presion arterial:</strong>  {{ $vital->presion ? $vital->presion : "" }}  <br>
                 <strong>Pulso:</strong>  {{ $vital->pulso ? $vital->pulso : "" }} <br>
-                <strong>Peso:</strong>  {{ $vital ? $vital->presion : "" }} <br>
-                <strong>Temperatura:</strong>  {{ $vital->temperatura ? $vital->presion : "" }} <br>
-                <strong>Frecuencia cardiaca:</strong>  {{ $vital ? $vital->presion : "" }} <br>
-                <strong>Estatura:</strong>  {{ $vital ? $vital->presion : "" }} <br>
-                <strong>Frecuencia respiratoria</strong>  {{ $vital ? $vital->presion : "" }} <br>
-                <strong>saturacion:</strong>  {{ $vital ? $vital->presion : "" }} <br>
-                <strong>imc:</strong>  {{ $vital ? $vital->presion : "" }} <br>
+                <strong>Peso:</strong>  {{ $vital->peso ? $vital->peso : "" }} <br>
+                <strong>Temperatura:</strong>  {{ $vital->temperatura ? $vital->temperatura : "" }} <br>
+                <strong>Frecuencia cardiaca:</strong>  {{ $vital->fre_cardiaca ? $vital->fre_cardiaca : "" }} <br>
+                <strong>Estatura:</strong>  {{ $vital->estatura ? $vital->estatura : "" }} <br>
+                <strong>Frecuencia respiratoria</strong>  {{ $vital->fre_respiratoria ? $vital->fre_respiratoria : "" }} <br>
+                <strong>saturacion:</strong>  {{ $vital->saturacion ? $vital->saturacion : "" }} <br>
+                <strong>imc:</strong>  {{ $vital->imc ? $vital->imc : "" }} <br>
             </p>
                 
             @endif
